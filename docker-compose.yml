@@ -2,7 +2,7 @@ version: '2'
 
 services:
   postgres:
-    image: postgres:11.6
+    image: postgres:11.6-alpine
   web:
     restart: always
     environment:
@@ -20,8 +20,8 @@ services:
     depends_on:
       - postgres
   documentation:
+    image: web
     restart: always
-    build: ./
     command: "mkdocs serve"
     volumes:
       - ./:/code
